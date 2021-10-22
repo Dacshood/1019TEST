@@ -8,7 +8,7 @@ public class Car {
 	int maxSpeed = 350;
 	int speed;
 	
-	//생성자
+	//생성자 명은 클래스와 명이 같아야한다.
 	
 	//메소드
 }

@@ -16,7 +16,7 @@ public class MainExample {
 			System.out.println("car1과 car2는 다른 객체(인스턴스)를 참조합니다.");
 		}
 		
-		Car myCar = new Car();
+		Car myCar = new Car(); //객체 선언이 반드시 필요 -> 인스턴스화 , 생성자를 부르는 연산
 		System.out.println("제작회사 : " + myCar.company);
 		System.out.println("모델명 : " + myCar.model);
 		System.out.println("색깔 : " + myCar.color);
