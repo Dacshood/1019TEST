@@ -1,0 +1,21 @@
+package com.yedam.java.ch02_03;
+
+public class ImplementationC implements InterfaceC {
+
+	@Override
+	public void methodA() {
+		System.out.println("ImplementsC-methoA() 실행");
+	}
+
+	@Override
+	public void methodB() {
+		System.out.println("ImplementsC-methoB() 실행");
+	}
+
+	@Override
+	public void methodC() {
+		System.out.println("ImplementsC-methoC() 실행");
+
+	}
+
+}

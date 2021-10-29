@@ -18,7 +18,7 @@ public class Player {
 		level.showLevelMessage();
 	}
 	public void play(int count) {
-//		level.go(count);
+		level.go(count);
 	}
 	
 	
