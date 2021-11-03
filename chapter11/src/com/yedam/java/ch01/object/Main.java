@@ -48,9 +48,52 @@ public class Main {//extends Object생략되어있음
 			
 			String strObj = myPhone.toString();
 			System.out.println(strObj);
-			
+			//객체를 매개변수로 넘길 경우 toString() 메소드가 자동으로 호출되며 리턴값을 던져줌
 			System.out.println(myPhone);
 			
+			System.out.println();
+			
+			Member original = new Member("blue", "홍길동","12345",25,true);
+			
+			Member clone = original.getMember();
+			clone.password = "67890";
+			
+			System.out.println("===복제 객체의 필드 값===");
+			System.out.println("id : "+ clone.id);
+			System.out.println("name : " + clone.name);
+			System.out.println("password : "+ clone.password);
+			System.out.println("age : "+ clone.age);
+			System.out.println("adult : "+clone.adult );
+			
+			System.out.println();
+			
+			System.out.println("===원본 객체의 필드 값===");
+			System.out.println("id : "+ original.id);
+			System.out.println("name : " + original.name);
+			System.out.println("password : "+ original.password);
+			System.out.println("age : "+ original.age);
+			System.out.println("adult : "+original.adult );
+	
+			System.out.println();
+			
+			Person originalPerson = new Person("홍길동",25,new int[] {90,90}, new Car("소나타"));
+			
+			Person clonedPerson = originalPerson.getPerson();
+			clonedPerson.scores[0]=100;
+			clonedPerson.car.model = "그렌저";
+			
+			System.out.println("===복제 객체의 필드 값===");
+			System.out.println("name : "+ clonedPerson.name);
+			System.out.println("age : "+ clonedPerson.age);
+			System.out.println("scores : "+ clonedPerson.scores[0]+", "+clonedPerson.scores[1]);
+			System.out.println("car : "+ clonedPerson.car.model);
+			System.out.println();
+	
+			System.out.println("===원본 객체의 필드 값===");
+			System.out.println("name : "+ originalPerson.name);
+			System.out.println("age : "+ originalPerson.age);
+			System.out.println("scores : "+ originalPerson.scores[0]+", "+originalPerson.scores[1]);
+			System.out.println("car : "+ originalPerson.car.model);
 	
 	}
 }
