@@ -7,7 +7,7 @@ public class Main {
 		// @FunctionalInterface
 		
 		
-		// 매개변수와
+		// 매개변수와 리턴타입이 없는 람다식
 		MyFunctionalInterfaceA fa;
 		
 		fa = new MyFunctionalInterfaceA() {
