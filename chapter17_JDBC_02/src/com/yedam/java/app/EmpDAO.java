@@ -20,6 +20,17 @@ public class EmpDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
+	//싱글톤
+	private static EmpDAO empDAO = null;
+	
+	private EmpDAO() {}
+	
+	public static EmpDAO getInstance() {
+		if(empDAO == null) {
+			empDAO = new EmpDAO();
+		}
+		return empDAO;
+	}
 	// DB 연결하기
 	public void connect() {
 		try {
@@ -30,7 +41,7 @@ public class EmpDAO {
 			String id = "hr";
 			String password = "hr";
 
-			Connection conn = DriverManager.getConnection(url, id, password);
+			conn = DriverManager.getConnection(url, id, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -94,7 +105,7 @@ public class EmpDAO {
 	// 조회 - 단건조회 or 상세조회
 	public Emp selectOne(int employeeId) {
 		// 값을 담을 변수 선언
-		Emp emp = new Emp();
+		Emp emp = null;
 
 		try {
 			// DB 연결하기
@@ -104,6 +115,7 @@ public class EmpDAO {
 			String select = "select * from employees where employee_id =" + employeeId;
 			rs = stmt.executeQuery(select);
 			if (rs.next()) {
+				emp = new Emp();
 				emp.setEmployeeId(rs.getInt("employee_id"));
 				emp.setFirstName(rs.getString("first_name"));
 				emp.setLastName(rs.getString("last_name"));
@@ -158,7 +170,47 @@ public class EmpDAO {
 	}
 
 	// 수정
+	public void update(Emp emp) {
+		try {
+			connect();
+			
+			String update = "update employees set last_name = ? where employee_id =?";
+			pstmt = conn.prepareStatement(update);
+			pstmt.setString(1, emp.getLastName());
+			pstmt.setInt(2, emp.getEmployeeId());
+			
+			int result = pstmt.executeUpdate();
+			
+			System.out.println(result + "건이 완료되었습니다.");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+	}
+	
+	
 	
 	// 삭제
-
+	public void delete(int employeeId) {
+		try {
+			connect();
+			
+			//각 메소드별 코드를 구현
+			
+			String delete = "delete from employees where employee_id = ?";
+			pstmt = conn.prepareStatement(delete);
+			pstmt.setInt(1,employeeId);
+			
+			int result = pstmt.executeUpdate();
+			System.out.println(result + "건이 완료되었습니다.");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+	}
+	
 }

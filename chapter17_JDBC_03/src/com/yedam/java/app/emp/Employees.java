@@ -1,8 +1,8 @@
-package com.yedam.java.app;
+package com.yedam.java.app.emp;
 
 import java.sql.Date;
 
-public class Emp {
+public class Employees {
 	
 	private int employeeId;
 	private String firstName;
@@ -15,8 +15,6 @@ public class Emp {
 	private double commissionPct;
 	private int managerId;
 	private int departmentId;
-	
-	
 	public int getEmployeeId() {
 		return employeeId;
 	}
@@ -83,13 +81,12 @@ public class Emp {
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
-	
 	@Override
 	public String toString() {
-		return "Emp [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", phoneNumber=" + phoneNumber + ", hireDate=" + hireDate + ", jobId=" + jobId + ", salary="
-				+ salary + ", commissionPct=" + commissionPct + ", managerId=" + managerId + ", departmentId="
-				+ departmentId + "]";
+		return "Employees [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", hireDate=" + hireDate + ", jobId=" + jobId
+				+ ", salary=" + salary + ", commissionPct=" + commissionPct + ", managerId=" + managerId
+				+ ", departmentId=" + departmentId + "]";
 	}
 	
 }

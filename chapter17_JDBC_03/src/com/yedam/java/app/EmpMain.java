@@ -1,9 +1,10 @@
 package com.yedam.java.app;
 
-public class Main {
+public class EmpMain {
 
 	public static void main(String[] args) {
-		
+		new EmpFrame();
+
 	}
 
 }
