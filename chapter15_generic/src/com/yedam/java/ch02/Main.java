@@ -12,7 +12,8 @@ public class Main {
 		product1.setModel("스마트Tv");
 		Tv tv = product1.getKind();
 		String tvModel = product1.getModel();
-		
+		System.out.println(product1.getKind());
+		System.out.println(product1.getModel());
 		Product<Car, String> product2 = new Product<>();
 		//오른쪽을 비워두면 리턴받는 타입에 따라 자동으로 클래스를 넣어줌
 		product2.setKind(new Car());

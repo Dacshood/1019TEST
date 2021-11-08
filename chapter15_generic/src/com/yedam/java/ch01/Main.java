@@ -25,6 +25,7 @@ public class Main {
 		powderPrinter.setMaterial(new Powder());
 		Powder powder = powderPrinter.getMaterial();
 		System.out.println(powder);
+	    powder.doPrinting();
 		
 		Printer<Plastic> plasticPrinter = new Printer<Plastic>();
 		plasticPrinter.setMaterial(new Plastic());

@@ -26,7 +26,7 @@ public class ReferenceTypeExample {
 		}
 
 		int result = add(new int[] {83,90,87});
-		
+		System.out.println(result);
 		System.out.println("=========================");
 		int [] arr1 = new int[3];
 		for(int i=0; i<3; i++) {

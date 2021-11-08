@@ -6,7 +6,7 @@ public class Main {
 
 		int result1 = Util.compare(10, 20);
 		System.out.println(result1);
-		int result2 = Util.compare(4.5,6);
+		int result2 = Util.compare(4.5,3);
 		System.out.println(result2);
 		
 		
@@ -15,10 +15,10 @@ public class Main {
 //		// 제한된 타입파라미터 : <T super 하위클래스>
 //		// Person = 상위 클래스
 //				// - Worker, Student : 하위클래스
-////							- Highstudent
-//		<I extends Student> =>
-//		<I extends.>
-		
+//////	*          - HighStudent : 자손클래스
+//		 * <T extends Student> => Student, HighStudent
+//		 * <T super Worker> => Person, Worker
+//		 */
 		//제네릭 상속과 구현
 		
 		ChildProduct<Tv,String,String> product = 
