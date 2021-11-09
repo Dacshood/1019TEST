@@ -4,11 +4,12 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import app.common.Frame;
 import app.pawnShop.Pawn;
 import app.pawnShop.PawnShopDAO;
 import app.pawnShop.PawnShopDAOImpl;
 
-public class PawnFrame {
+public class PawnFrame implements Frame{
 	// 필드
 	Scanner scanner = new Scanner(System.in);
 	PawnShopDAO dao = PawnShopDAOImpl.getInstance();
@@ -28,6 +29,8 @@ public class PawnFrame {
 				selectAll();
 			} else if (functionNo == 3) { // 제품 조회
 				selectOne();
+			} else if (functionNo == 4) { // 물건 빼기
+				delete();
 			} else if (functionNo == 9) { // 종료
 				end();
 				break;
@@ -43,9 +46,9 @@ public class PawnFrame {
 	// 기능 출력 메소드
 	void functionPrint() {
 		System.out.println("");
-		System.out.println("=================================");
-		System.out.println("==1.등록 2.전체조회 3.제품조회 9.종료==");
-		System.out.println("=================================");
+		System.out.println("==========================================");
+		System.out.println("==1.등록 2.전체조회 3.제품조회 4.물건빼기 9.종료==");
+		System.out.println("==========================================");
 		System.out.println("선택>>");
 	}
 
@@ -81,7 +84,6 @@ public class PawnFrame {
 		Pawn pawn = new Pawn();
 		System.out.println("제품번호>>");
 		pawn.setProductId(scanner.nextInt());
-
 		if (isOnTheList(pawn.getProductId())) {
 			System.out.println("등록된 제품번호가 존재합니다.");
 			return;
@@ -103,7 +105,13 @@ public class PawnFrame {
 				if (pawn.getPrice() >= 50000 && pawn.getPrice() < 100000) {
 					System.out.println("주인) 어허 그건좀 너무 비싸구려.");
 					update();
-					pawn.setPrice(scanner.nextInt());
+					pawn.setPrice(pawn.getPrice());
+					if(pawn.getPrice() < 50000) {
+						System.out.println("거래가 완료 되었습니다.");
+					}else {
+						System.out.println("다른 전당포를 찾아보시게\n흥정이 결렬되었습니다.");
+						run = false;
+					}break;
 				} else if (pawn.getPrice() >= 100000) {
 					System.out.println("전당포에서 쫓겨났습니다.");
 					run = false;
@@ -115,7 +123,12 @@ public class PawnFrame {
 				if (pawn.getPrice() >= 10000 && pawn.getPrice() < 20000) {
 					System.out.println("주인) 어허 그건좀 너무 비싸구려.");
 					update();
-					pawn.setPrice(scanner.nextInt());
+					if(pawn.getPrice() < 10000) {
+						System.out.println("거래가 완료 되었습니다.");
+					}else {
+						System.out.println("다른 전당포를 찾아보시게\n흥정이 결렬되었습니다.");
+						run = false;
+					}break;
 				} else if (pawn.getPrice() >= 20000) {
 					System.out.println("전당포에서 쫓겨났습니다.");
 					run = false;
@@ -127,7 +140,12 @@ public class PawnFrame {
 				if (pawn.getPrice() >= 70000 && pawn.getPrice() < 140000) {
 					System.out.println("주인) 어허 그건좀 너무 비싸구려.");
 					update();
-					pawn.setPrice(scanner.nextInt());
+					if(pawn.getPrice() < 70000) {
+						System.out.println("거래가 완료 되었습니다.");
+					}else {
+						System.out.println("다른 전당포를 찾아보시게\n흥정이 결렬되었습니다.");
+						run = false;
+					}break;
 				} else if (pawn.getPrice() >= 140000) {
 					System.out.println("전당포에서 쫓겨났습니다.");
 					run = false;
@@ -139,7 +157,12 @@ public class PawnFrame {
 				if (pawn.getPrice() >= 40000 && pawn.getPrice() < 80000) {
 					System.out.println("주인) 어허 그건좀 너무 비싸구려.");
 					update();
-					pawn.setPrice(scanner.nextInt());
+					if(pawn.getPrice() < 40000) {
+						System.out.println("거래가 완료 되었습니다.");
+					}else {
+						System.out.println("다른 전당포를 찾아보시게\n흥정이 결렬되었습니다.");
+						run = false;
+					}break;
 				} else if (pawn.getPrice() >= 80000) {
 					System.out.println("전당포에서 쫓겨났습니다.");
 					run = false;
@@ -151,7 +174,12 @@ public class PawnFrame {
 				if (pawn.getPrice() >= 60000 && pawn.getPrice() < 120000) {
 					System.out.println("주인) 어허 그건좀 너무 비싸구려.");
 					update();
-					pawn.setPrice(scanner.nextInt());
+					if(pawn.getPrice() < 60000) {
+						System.out.println("거래가 완료 되었습니다.");
+					}else {
+						System.out.println("다른 전당포를 찾아보시게\n흥정이 결렬되었습니다.");
+						run = false;
+					}break;
 				} else if (pawn.getPrice() >= 120000) {
 					System.out.println("전당포에서 쫓겨났습니다.");
 					run = false;
@@ -163,12 +191,12 @@ public class PawnFrame {
 				if (pawn.getPrice() >= 30000 && pawn.getPrice() < 60000) {
 					System.out.println("주인) 어허 그건좀 너무 비싸구려.");
 					update();
-					if(pawn.getPrice()<30000) {
+					if(pawn.getPrice() < 30000) {
 						System.out.println("거래가 완료 되었습니다.");
 					}else {
-						System.out.println("다른 전당포를 찾아보시게");
+						System.out.println("다른 전당포를 찾아보시게\n흥정이 결렬되었습니다.");
 						run = false;
-					}
+					}break;
 				} else if (pawn.getPrice() >= 60000) {
 					System.out.println("전당포에서 쫓겨났습니다.");
 					run = false;
@@ -176,6 +204,9 @@ public class PawnFrame {
 					System.out.println("주인) 탁월한 선택이십니다.");
 					System.out.println("주인이 흐뭇해하며 거래를 완료했습니다.");
 				}break;
+			} else {
+				System.out.println("저희 전당포에선 거래하지 않는 물품입니다. 물품시세를 조회하고 오세요");
+				run = false;
 			}
 			int result = dao.insert(pawn);
 			System.out.println(result + "건이 맡겨졌습니다.");
@@ -188,14 +219,15 @@ public class PawnFrame {
 	// 흥정값 입력 기능
 	void update() {
 		Pawn pawn = new Pawn();
-		dao.update(pawn);
+		int result = dao.update(pawn);
 		System.out.println("새로운 값을 제시하였습니다.");
+		pawn.getPrice();
 	}
 
 	// 흥정실패 삭제기능
 	void delete() {
-		Pawn pawn = new Pawn();
-		int result = dao.delete(pawn);
+		int selected = productId();
+		int result = dao.delete(selected);
 		System.out.println(result + "건이 삭제되었습니다.");
 	}
 
@@ -214,6 +246,12 @@ public class PawnFrame {
 
 	void end() {
 		System.out.println("프로그램을 종료합니다.");
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -12,7 +12,7 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 	private final String SELECT_ALL = "select * from pawnshop order by product_id";
 	private final String SELECT_ONE = "select * from pawnshop where product_id=?";
 	private final String INSERT = "insert into pawnshop values(?,?,?,?)";
-	private final String DELETE = "delete from pawnshop where product_id=?)";
+	private final String DELETE = "delete from pawnshop where product_id=?";
 	private final String UPDATE = "update pawnshop set price = ? where product_id = ?";
 	
 	Scanner scanner = new Scanner(System.in);
@@ -49,19 +49,19 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 	}
 
 	@Override
-	public int delete(Pawn pawn) {
+	public int delete(int productId) {
 		// 삭제
 		int result = 0;
 		try {
 			connect();
 
 			pstmt = conn.prepareStatement(DELETE);
-			pstmt.setInt(1, pawn.getProductId());
+			pstmt.setInt(1, productId);
 
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("흥정에 실패했습니다.");
+			System.out.println("물건을 처리하지 못했습니다.");
 		} finally {
 			disconnect();
 		}
@@ -107,8 +107,9 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 				pawn = new Pawn();
 				pawn.setProductId(rs.getInt("product_id"));
 				pawn.setProductName(rs.getString("product_name"));
-				pawn.setReceiveDate(rs.getDate("receiveDate"));
+				pawn.setReceiveDate(rs.getDate("receive_date"));
 				pawn.setPrice(rs.getInt("price"));
+			
 			}
 		} catch (SQLException e) {
 			System.out.println("다시 입력해주세요");
@@ -130,7 +131,6 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 			pawn.setPrice(scanner.nextInt());
 			pstmt.setInt(1, pawn.getPrice());
 			pstmt.setInt(2, pawn.getProductId());
-
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
