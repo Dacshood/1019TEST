@@ -13,7 +13,8 @@ public interface PawnShopDAO {
 	public List<Pawn> selectAll();
 	//단건 조회
 	public Pawn selectOne(int productId);
-	
+	//이름으로 조회
+	public int select(Pawn pawn);
 	
 
 }

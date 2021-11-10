@@ -18,7 +18,7 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return "제품 명 : " + productName + ", 현재 시세" + marketPrice;
+		return "제품명 : " + productName + ", 현재시세 : " + marketPrice;
 	}
 	
 	

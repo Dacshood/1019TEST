@@ -10,36 +10,36 @@ import app.common.DAO;
 public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 	// 사용할 SQL 정리
 	private final String SELECT_ALL = "select * from pawnshop order by product_id";
-	private final String SELECT_ONE = "select * from pawnshop where product_id=?";
+	private final String SELECT_ONE = "select * from pawnshop where product_id = ?";
+	private final String SELECT = "select * from pawnshop where product_id = ?";
 	private final String INSERT = "insert into pawnshop values(?,?,?,?)";
 	private final String DELETE = "delete from pawnshop where product_id=?";
 	private final String UPDATE = "update pawnshop set price = ? where product_id = ?";
-	
+
 	Scanner scanner = new Scanner(System.in);
-	
+
 	// 싱글톤
 	private static PawnShopDAO instance = new PawnShopDAOImpl();
 
 	public static PawnShopDAO getInstance() {
 		return instance;
 	}
-	
-	
+
 	@Override
 	public int insert(Pawn pawn) {
 		// 등록
 		int result = 0;
 		try {
 			connect();
-			
+
 			pstmt = conn.prepareStatement(INSERT);
 			pstmt.setInt(1, pawn.getProductId());
 			pstmt.setString(2, pawn.getProductName());
 			pstmt.setDate(3, pawn.getReceiveDate());
 			pstmt.setInt(4, pawn.getPrice());
-			
+
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			System.out.println("협상이 결렬되었습니다.");
 		} finally {
@@ -59,7 +59,6 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 			pstmt.setInt(1, productId);
 
 			result = pstmt.executeUpdate();
-
 		} catch (SQLException e) {
 			System.out.println("물건을 처리하지 못했습니다.");
 		} finally {
@@ -109,7 +108,7 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 				pawn.setProductName(rs.getString("product_name"));
 				pawn.setReceiveDate(rs.getDate("receive_date"));
 				pawn.setPrice(rs.getInt("price"));
-			
+
 			}
 		} catch (SQLException e) {
 			System.out.println("다시 입력해주세요");
@@ -139,6 +138,29 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 		}
 		return result;
 
+	}
+
+	@Override
+	public int select(Pawn pawn) {
+		int newPrice = 0;
+		
+		try {
+			connect();
+			pstmt = conn.prepareStatement(SELECT);
+			pstmt.setInt(1, pawn.getProductId());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+			pawn.setPrice(rs.getInt("price"));
+			newPrice = pawn.getPrice();
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("다시 입력해주세요");
+		} finally {
+			disconnect();
+		}
+		return newPrice;
 	}
 
 }
