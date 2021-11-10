@@ -3,7 +3,7 @@ package app.users;
 
 public class User {
 	private String userId;
-	private int password;
+	private String password;
 	private String name;
 	private int age;
 	
@@ -20,10 +20,10 @@ public class User {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public int getAge() {

@@ -31,7 +31,7 @@ public class UserFrame implements Frame {
 				selectOne();
 			} else if (functionNo == 4) { // 회원정보 이름을 통하여 삭제
 				delete();
-			} else if (functionNo == 5) { // 회원정보 이름을 통하여 아이디,비밀번호 수정
+			} else if (functionNo == 5) { // 아이디를 입력받아 비밀번호 변경
 				update();
 			} else if (functionNo == 9) { // 종료
 				end();
@@ -48,7 +48,7 @@ public class UserFrame implements Frame {
 	void functionPrint() {
 		System.out.println("");
 		System.out.println("==================================================================");
-		System.out.println("==1.회원가입 2.회원전체조회 3.회원검색 4.회원삭제 5.아이디,비밀번호 변경 9.종료==");
+		System.out.println("==1.회원가입 2.회원전체조회 3.회원검색 4.회원삭제 5.비밀번호 변경 9.종료==");
 		System.out.println("==================================================================");
 		System.out.println("선택>>");
 	}
@@ -69,20 +69,24 @@ public class UserFrame implements Frame {
 		System.out.println("회원이름>>");
 		return scanner.next();
 	}
+	// 회원 아이디 입력
+		String userId() {
+			System.out.println("Id>>");
+			return scanner.next();
+		}
 	// 회원가입
 	void insert() {
 		User user = new User();
 		System.out.println("아이디 >>");
 		user.setUserId(scanner.next());
 		System.out.println("비밀번호 >>");
-		user.setPassword(scanner.nextInt());
+		user.setPassword(scanner.next());
 		System.out.println("이름 >>");
 		user.setName(scanner.next());
 		System.out.println("나이 >>");
 		user.setAge(scanner.nextInt());
 		dao.insert(user);
 		
-		System.out.println("회원가입이 완료되었습니다.");
 	}
 
 	//회원전체조회
@@ -102,13 +106,11 @@ public class UserFrame implements Frame {
 	void delete() {
 		String selected = name();
 		dao.delete(selected);
-		System.out.println("회원이 삭제 되었습니다.");
 	}
 	//아이디비밀번호변경
 	void update() {
-		String selected = name();
+		String selected = userId();
 		dao.update(selected);
-		System.out.println("회원 수정이 완료되었습니다.");
 	}
 	//종료
 	void end() {

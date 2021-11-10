@@ -48,11 +48,6 @@ public class PawnFrame implements Frame {
 
 	// 메소드
 	void login() {
-	
-	
-		
-		
-		
 	System.out.println("아이디 입력 >>");	
 	String id = scanner.nextLine();
 	System.out.println("비밀번호 입력>>");

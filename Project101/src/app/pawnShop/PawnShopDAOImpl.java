@@ -39,7 +39,7 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 			pstmt.setInt(4, pawn.getPrice());
 
 			result = pstmt.executeUpdate();
-
+		
 		} catch (SQLException e) {
 			System.out.println("협상이 결렬되었습니다.");
 		} finally {
