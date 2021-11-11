@@ -48,9 +48,9 @@ public class ProductFrame implements Frame {
 	// 기능 출력 메소드
 	void functionPrint() {
 		System.out.println("");
-		System.out.println("======================================================");
-		System.out.println("==1.전체조회 2.단건조회 3.물건등록 4.물건수정 5.물건삭제 9.종료==");
-		System.out.println("======================================================");
+		System.out.println("========================================================");
+		System.out.println("==1.전체조회 2.단건조회 3.시세등록 4.시세수정 5.시세삭제 9.홈화면==");
+		System.out.println("========================================================");
 		System.out.println("선택>>");
 	}
 
@@ -124,7 +124,7 @@ public class ProductFrame implements Frame {
 		System.out.println("삭제되었습니다.");
 	}
 	void end() {
-		System.out.println("프로그램을 종료합니다.");
+		System.out.println("홈화면으로 돌아갑니다.");
 	}
 	@Override
 	public void run() {

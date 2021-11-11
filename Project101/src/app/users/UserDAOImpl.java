@@ -25,8 +25,9 @@ public class UserDAOImpl extends DAO implements UserDAO {
 	}
 
 	// 로그인
-	public int login(User user) { 
-			String sql = "select user_password from user where user_id = ?"; 
+	@Override
+	public int logIn(User user) { 
+			String sql = "select user_password from users where user_id = ?"; 
 			try {
 				connect();
 				pstmt = conn.prepareStatement(sql);
@@ -72,7 +73,8 @@ public class UserDAOImpl extends DAO implements UserDAO {
 		}
 		return result;
 	}
-
+	
+	//회원 id를 입력하여 비밀번호 변경
 	@Override
 	public void update(String userId) {
 		User user = new User();
@@ -94,6 +96,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 		}
 	}
 
+	//이름을 통하여 삭제해주는 친구
 	@Override
 	public int delete(String name) {
 		int result = 0;
@@ -111,7 +114,8 @@ public class UserDAOImpl extends DAO implements UserDAO {
 		}
 		return result;
 	}
-
+	
+	//회원전체조회
 	@Override
 	public List<User> selectAll() {
 		List<User> list = new ArrayList<>();
@@ -138,6 +142,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 		return list;
 	}
 
+	//이름을 통하여 회원정보를 가져오는 친구
 	@Override
 	public User selectOne(String name) {
 		User user = null;
@@ -162,30 +167,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 		return user;
 	}
 
-	@Override
-	public User selectcheck(int userId) {
-		User user = null;
-		try {
-			connect();
 
-			stmt = conn.createStatement();
-			String sql = "select * from users where user_id = '" + userId + "'";
-			rs = stmt.executeQuery(sql);
-			if (rs == null) {
-				System.out.println("중복되지않습니다.");
-			} else {
-				System.out.println("아이디가 중복됩니다.");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
-
-	@Override
-	public int logIn(User user) {
-		
-	      return 0;
-	}
+	
 
 }

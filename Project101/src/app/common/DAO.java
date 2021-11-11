@@ -10,7 +10,7 @@ import java.sql.Statement;
 public abstract class DAO {
 	// Oracle 연결정보
 	private String jdbc_driver = "oracle.jdbc.driver.OracleDriver";
-	private String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String jdbc_url = "jdbc:oracle:thin:@192.168.0.35:1521:xe";
 	private String connectedId = "hr";
 	private String connectedPwd = "hr";
 

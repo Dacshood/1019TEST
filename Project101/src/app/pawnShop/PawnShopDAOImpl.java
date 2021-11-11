@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import app.common.DAO;
+import app.product.ProductViewDAO;
+import app.product.ProductViewDAOImpl;
 
 public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 	// 사용할 SQL 정리
@@ -24,7 +26,13 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 	public static PawnShopDAO getInstance() {
 		return instance;
 	}
+	
+	private static ProductViewDAO instance1 = new ProductViewDAOImpl();
 
+	public static ProductViewDAO getInstance1() {
+		return instance1;
+	}
+	
 	@Override
 	public int insert(Pawn pawn) {
 		// 등록
@@ -93,7 +101,7 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 		}
 		return list;
 	}
-
+	//아이디를 입력받아 검색
 	@Override
 	public Pawn selectOne(int productId) {
 		Pawn pawn = null;
@@ -140,6 +148,7 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 
 	}
 
+	//가격만 가져오는 친구
 	@Override
 	public int select(Pawn pawn) {
 		int newPrice = 0;
@@ -162,5 +171,7 @@ public class PawnShopDAOImpl extends DAO implements PawnShopDAO {
 		}
 		return newPrice;
 	}
+
+	
 
 }

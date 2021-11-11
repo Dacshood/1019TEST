@@ -64,7 +64,7 @@ public class ProductViewDAOImpl extends DAO implements ProductViewDAO {
 		}
 
 	}
-
+	//삭제
 	@Override
 	public void delete(String productName) {
 		
@@ -73,6 +73,7 @@ public class ProductViewDAOImpl extends DAO implements ProductViewDAO {
 
 			pstmt = conn.prepareStatement(DELETE);
 			pstmt.setString(1, productName);
+			pstmt.executeUpdate();
 			System.out.println("정상적으로 삭제되었습니다.");
 		} catch (SQLException e) {
 			System.out.println("물건을 처리하지 못했습니다.");
@@ -80,10 +81,10 @@ public class ProductViewDAOImpl extends DAO implements ProductViewDAO {
 			disconnect();
 		}
 	}
-
+	
+	//전체조회
 	@Override
 	public List<Product> selectAll() {
-		// 전체제품조회
 		List<Product> list = new ArrayList<>();
 		try {
 			connect();
@@ -105,7 +106,7 @@ public class ProductViewDAOImpl extends DAO implements ProductViewDAO {
 		}
 		return list;
 	}
-
+	//이름을 통하여 검색해주는 친구
 	@Override
 	public Product selectOne(String productName) {
 		Product product = null;
@@ -127,6 +128,29 @@ public class ProductViewDAOImpl extends DAO implements ProductViewDAO {
 			disconnect();
 		}
 		return product;
+	}
+	
+	//시세를 가져와주는 친구
+	@Override
+	public int select(Product product) {
+		int marketPrice = 0;
+		try {
+			connect();
+			pstmt = conn.prepareStatement(SELECT_ALL);
+			pstmt.setInt(1, product.getMarketPrice());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				product.setMarketPrice(rs.getInt("market_price"));
+				marketPrice = product.getMarketPrice();
+			}
+		} catch(SQLException e) {
+			System.out.println("잘못입력하셨습니다.");
+		} finally {
+			disconnect();
+		}
+		return marketPrice;
+		
 	}
 
 }

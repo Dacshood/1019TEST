@@ -13,5 +13,7 @@ public interface ProductViewDAO {
 	public List<Product> selectAll();
 	//물건 이름을 입력하여 가격을 조회합니다
 	public Product selectOne(String productName);
+	// 시세를 전당포에 넘기는 친구
+	public int select(Product product);
 	
 }
