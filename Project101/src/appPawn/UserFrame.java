@@ -18,7 +18,7 @@ public class UserFrame implements Frame {
 		// 기능 출력
 		// 기능 선택
 		// 해당 기능 호출
-
+		
 		while (true) {
 			functionPrint();
 			int functionNo = functionSelect();
@@ -43,12 +43,13 @@ public class UserFrame implements Frame {
 		}
 	}
 
+	
 	// 메소드
 	// 기능 출력 메소드
 	void functionPrint() {
 		System.out.println("");
 		System.out.println("==================================================================");
-		System.out.println("==1.회원가입 2.회원전체조회 3.회원검색 4.회원삭제 5.비밀번호 변경 9.종료==");
+		System.out.println("==1.회원가입 2.회원전체조회 3.회원검색 4.회원삭제 5.비밀번호 변경 9.홈화면=====");
 		System.out.println("==================================================================");
 		System.out.println("선택>>");
 	}
@@ -114,7 +115,7 @@ public class UserFrame implements Frame {
 	}
 	//종료
 	void end() {
-		System.out.println("프로그램을 종료합니다.");
+		System.out.println("홈화면으로 돌아갑니다.");
 	}
 	
 	@Override
